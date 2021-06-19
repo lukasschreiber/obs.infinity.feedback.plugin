@@ -74,7 +74,7 @@ echo [32m####################################################[0m
 rem Output
 echo.
 echo Please follow the installation guide in the README.md
-echo Your UI file: [32m %UserProfile%\obs\scripts\InfinityFeedback\UI\broadcaster_ui.html[0m
-echo Your Script file: [32m %UserProfile%\obs\scripts\InfinityFeedback\obs_plugin_socket.py[0m
+echo Your UI file: [32m %UserProfile%\obs\scripts\InfinityFeedback\UI\infinity_feedback_ui.html[0m
+echo Your Script file: [32m %UserProfile%\obs\scripts\InfinityFeedback\infinity_feedback_integrator.py[0m
 echo.
 echo You have to manually paste both paths in OBS
