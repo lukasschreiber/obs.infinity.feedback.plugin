@@ -25,18 +25,18 @@ if exist "%ProgramFiles%\obs-studio\bin\64bit\obs64.exe" (
 
 rem Create Folder Structure
 
-if not exist "%UserProfile%\obs\scripts\LiveFeedback" (
-    mkdir "%UserProfile%\obs\scripts\LiveFeedback"
+if not exist "%UserProfile%\obs\scripts\InfinityFeedback" (
+    mkdir "%UserProfile%\obs\scripts\InfinityFeedback"
 )
 
-if not exist "%UserProfile%\obs\scripts\LiveFeedback\UI" (
-    mkdir "%UserProfile%\obs\scripts\LiveFeedback\UI"
+if not exist "%UserProfile%\obs\scripts\InfinityFeedback\UI" (
+    mkdir "%UserProfile%\obs\scripts\InfinityFeedback\UI"
 )
 
 rem Copy Files
 
 echo.
->nul 2>nul dir /a-d "%UserProfile%\obs\scripts\LiveFeedback\UI\*" && (goto OVERWRITE_UI) || (goto COPY_UI)
+>nul 2>nul dir /a-d "%UserProfile%\obs\scripts\InfinityFeedback\UI\*" && (goto OVERWRITE_UI) || (goto COPY_UI)
 :OVERWRITE_UI
 SET /P AREYOUSURE=[33mThe UI Files will be updated and therefore overwritten. Do you want to continue (Y/[N])?[0m
 IF /I "%AREYOUSURE%" NEQ "Y" GOTO END_UI
@@ -51,7 +51,7 @@ echo Copying...
 :END_UI
 
 echo.
->nul 2>nul dir /a-d "%UserProfile%\obs\scripts\LiveFeedback\*" && (goto OVERWRITE) || (goto COPY)
+>nul 2>nul dir /a-d "%UserProfile%\obs\scripts\InfinityFeedback\*" && (goto OVERWRITE) || (goto COPY)
 :OVERWRITE
 SET /P AREYOUSURE=[33mThe Script Files will be updated and therefore overwritten. Do you want to continue (Y/[N])?[0m
 IF /I "%AREYOUSURE%" NEQ "Y" GOTO END
@@ -74,7 +74,7 @@ echo [32m####################################################[0m
 rem Output
 echo.
 echo Please follow the installation guide in the README.md
-echo Your UI file: [32m %UserProfile%\obs\scripts\LiveFeedback\UI\broadcaster_ui.html[0m
-echo Your Script file: [32m %UserProfile%\obs\scripts\LiveFeedback\obs_plugin_socket.py[0m
+echo Your UI file: [32m %UserProfile%\obs\scripts\InfinityFeedback\UI\broadcaster_ui.html[0m
+echo Your Script file: [32m %UserProfile%\obs\scripts\InfinityFeedback\obs_plugin_socket.py[0m
 echo.
 echo You have to manually paste both paths in OBS
