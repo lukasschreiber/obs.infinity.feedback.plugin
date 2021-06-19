@@ -1,0 +1,98 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Broadcaster</title>
+    <link rel="stylesheet" href="./theme.css">
+    <link rel="stylesheet" href="./style.css">
+    <script src="./jquery.js"></script>
+
+</head>
+
+<body class="panel">
+    <div class="container">
+
+        <div class="input-container">
+            <label>Reciever</label>
+            <select name="theme" id="scenes" class="select-settings-storable">
+                <option selected value="*">All Scenes</option>
+            </select>
+        </div>
+        <p>All devices that have subscribed to the chosen scene will be notified.</p>
+
+
+        <div class="input-container">
+            <label>Message</label>
+            <input type="text" value="" placeholder="Message" id="msg" />
+
+        </div>
+
+        <div class="input-container">
+            <label></label>
+            <input type="button" value="Broadcast Message" onclick="broadcastMessage()" />
+
+        </div>
+        <p id="error"></p>
+
+        <div class="input-container">
+            <label></label>
+            <input type="button" value="Update Recievers" onclick="updateScenes()" />
+
+        </div>
+
+    </div>
+
+    <script>
+        window.onload = updateScenes()
+
+        function jsonCallback(json) {
+            console.log(json)
+            var select = document.getElementById('scenes')
+            var i = 1;
+            json.scenes.payload.forEach(scene => {
+                select.options[i++] = new Option(scene.name, scene.name)
+            });
+        }
+
+        function logJson(json){
+            console.log(json)
+            document.getElementById("msg").value = ""
+        }
+
+
+
+        function updateScenes() {
+            $.ajax({
+                url: "http://server.allinthebox.org/get/jsonp?key=d65d7c2ab22d5f679ca24ae278c1a01c69a37277",
+                dataType: "jsonp",
+                jsonpCallback: "jsonCallback"
+            });
+         
+
+        }
+
+
+        function broadcastMessage() {
+            var message = document.getElementById('msg').value
+            var scene = document.getElementById('scenes').value
+            if (message !== null && scene !== null) {
+                document.getElementById('error').style.display = "none"
+                $.ajax({
+                url: 'http://server.allinthebox.org/message/jsonp?key=d65d7c2ab22d5f679ca24ae278c1a01c69a37277&message=' + message + '&reference=' + scene,
+                dataType: "jsonp",
+                jsonpCallback: "logJson"
+            });
+
+            } else {
+                document.getElementById('error').style.display = "block"
+                document.getElementById('error').innerHTML = "You must provide a message."
+            }
+
+        }
+    </script>
+
+
+</body>
+
+</html>
