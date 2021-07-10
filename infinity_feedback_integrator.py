@@ -40,7 +40,6 @@ def get_current_scene(data=""):
 		thread.start()
 		print('exit')
 
-		thread.join()
 	except Exception as e:
 		print(e)
 
@@ -91,7 +90,6 @@ def propagate_streaming_started():
 		thread.start()
 		print('exit')
 
-		thread.join()
 	except Exception as e:
 		print(e)
 
@@ -105,7 +103,6 @@ def propagate_streaming_stopped():
 		thread.start()
 		print('exit')
 
-		thread.join()
 	except Exception as e:
 		print(e)
 
